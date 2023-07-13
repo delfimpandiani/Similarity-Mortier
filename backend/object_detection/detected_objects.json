@@ -1,0 +1,34 @@
+{
+  "image_2466": {
+    "detected_objects": {
+      "detected_object_1": {
+        "lexical_entry": "person",
+        "conceptnet_concept": "conceptnet:person",
+        "coordinates":  {
+          "x1": 6.4912958984375,
+          "y1": 11.9967041015625,
+          "x2": 74.3565979003906,
+          "y2": 68.6944274902344
+          },
+        "probability_score":  0.97440751609802
+        },
+      "detected_object_2": {
+        "lexical_entry": "potted_plant",
+        "conceptnet_concept": "conceptnet:potted_plant",
+        "coordinates":  {
+          "x1": 6.49407958984375,
+          "y1": 171.9967041015625,
+          "x2": 674.3565979003906,
+          "y2": 328.6944274902344
+          },
+        "probability_score":  0.67440751609802
+        }
+    },
+    "detected_poses": {},
+    "top_colors" : {}
+  },
+  "image_1222": {}
+}
+
+
+

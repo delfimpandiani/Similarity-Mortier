@@ -10,6 +10,9 @@ setup_logger()
 import numpy as np
 import cv2
 import pickle
+import os
+import json
+
 
 # import some common detectron2 utilities
 from detectron2 import model_zoo
@@ -158,6 +161,50 @@ def get_objects_deets(image):
         print("Score: ", obj_info["score"])
 
     return image, object_details
+
+
+
+
+def get_folder_objects_json(folder_path, output_file):
+    folder_objects = {}
+
+    # Iterate over the files in the folder
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".jpg") or filename.endswith(".png"):
+            image_path = os.path.join(folder_path, filename)
+
+            # Execute get_objects_deets() for the image
+            image, object_details = get_objects_deets(image_path)
+
+            # Extract the image name without extension
+            image_name = os.path.splitext(filename)[0]
+
+            # Create the detected_objects dictionary
+            detected_objects = {}
+            for i, obj_info in enumerate(object_details, start=1):
+                object_name = obj_info["object_name"]
+                coordinates = obj_info["coordinates"]
+                score = obj_info["score"]
+
+                # Create the object dictionary
+                object_dict = {
+                    "lexical_entry": object_name,
+                    "conceptnet_concept": f"conceptnet:{object_name}",
+                    "coordinates": coordinates,
+                    "probability_score": score
+                }
+
+                # Add the object dictionary to the detected_objects dictionary
+                detected_objects[f"detected_object_{i}"] = object_dict
+
+            # Add the detected_objects dictionary to the folder_objects dictionary
+            folder_objects[image_name] = {
+                "detected_objects": detected_objects
+            }
+
+    # Write the folder_objects dictionary to a JSON file
+    with open(output_file, "w") as file:
+        json.dump(folder_objects, file, indent=2)
 
 
 

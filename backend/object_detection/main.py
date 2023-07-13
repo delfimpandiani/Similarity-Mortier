@@ -19,7 +19,9 @@ from od_utils_delfi import *
 
 
 
-image = cv2.imread("../prova/comfort/17942.jpg")
-objs = get_objects_deets(image)
+# image = cv2.imread("../prova/comfort/17942.jpg")
+# objs = get_objects_deets(image)
+#
+# print(objs)
 
-print(objs)
+get_folder_objects_json("../prova/comfort", "output.json")
